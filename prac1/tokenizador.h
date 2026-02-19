@@ -10,42 +10,53 @@ using namespace std;
 
 class Tokenizador {
     
-    // CONSTRUCTORES
+    public:
 
-    Tokenizador(const string& delimitadoresPalabra, const bool& kcasosEspeciales, const bool& minuscSinAcentos);    // Inicializa delimiters a delimitadoresPalabra filtrando que no se introduzcan delimitadores repetidos (de izquierda a derecha, en cuyo caso se eliminarán los que hayan sido repetidos por la derecha), casosEspeciales a kcasosEspeciales, pasarAminuscSinAcentos a minuscSinAcentos
-    Tokenizador(const Tokenizador&);
-    Tokenizador();                                                                                                  // Inicializa delimiters=",;:.-/+*\\ '\"{}[]()<>?!??&#=\t@"; casosEspeciales a true; pasarAminuscSinAcentos a false
-    
-    // DESTRUCTORES
+        // CONSTRUCTORES
 
-    ~Tokenizador();	// Pone delimiters=""
-    
-    // FUNCIONES DE TOKENIZAR
-    
-    void Tokenizar(const string& str, list<string>& tokens) const;  // Tokeniza str devolviendo el resultado en tokens. La lista tokens se vaciar? antes de almacenar el resultado de la tokenizaci?n. 
-    bool Tokenizar(const string& i, const string& f) const;         // Tokeniza el fichero i guardando la salida en el fichero f (una palabra en cada l?nea del fichero). Devolver? true si se realiza la tokenizaci?n de forma correcta; false en caso contrario enviando a cerr el mensaje correspondiente (p.ej. que no exista el archivo i)
-    bool Tokenizar(const string& i) const;                          // Tokeniza el fichero i guardando la salida en un fichero de nombre i a?adi?ndole extensi?n .tk (sin eliminar previamente la extensi?n de i por ejemplo, del archivo pp.txt se generar?a el resultado en pp.txt.tk), y que contendr? una palabra en cada l?nea del fichero. Devolver? true si se realiza la tokenizaci?n de forma correcta; false en caso contrario enviando a cerr el mensaje correspondiente (p.ej. que no exista el archivo i)
-    bool TokenizarListaFicheros(const string& i) const;             // Tokeniza el fichero i que contiene un nombre de fichero por l?nea guardando la salida en ficheros (uno por cada l?nea de i) cuyo nombre ser? el le?do en i a?adi?ndole extensi?n .tk, y que contendr? una palabra en cada l?nea del fichero le?do en i. Devolver? true si se realiza la tokenizaci?n de forma correcta de todos los archivos que contiene i; devolver? false en caso contrario enviando a cerr el mensaje correspondiente (p.ej. que no exista el archivo i, o que se trate de un directorio, enviando a "cerr" los archivos de i que no existan o que sean directorios; luego no se ha de interrumpir la ejecuci?n si hay alg?n archivo en i que no exista)
-    bool TokenizarDirectorio(const string& i) const;                // Tokeniza todos los archivos que contenga el directorio i, incluyendo los de los subdirectorios, guardando la salida en ficheros cuyo nombre ser? el de entrada a?adi?ndole extensi?n .tk, y que contendr? una palabra en cada l?nea del fichero. Devolver? true si se realiza la tokenizaci?n de forma correcta de todos los archivos; devolver? false en caso contrario enviando a cerr el mensaje correspondiente (p.ej. que no exista el directorio i, o los ficheros que no se hayan podido tokenizar)
-    
-    // GETTERS
+        Tokenizador();                                                                                                  // Inicializa delimiters=",;:.-/+*\\ '\"{}[]()<>?!??&#=\t@"; casosEspeciales a true; pasarAminuscSinAcentos a false
+        Tokenizador(const string& delimitadoresPalabra, const bool& kcasosEspeciales, const bool& minuscSinAcentos);    // Inicializa delimiters a delimitadoresPalabra filtrando que no se introduzcan delimitadores repetidos (de izquierda a derecha, en cuyo caso se eliminarán los que hayan sido repetidos por la derecha), casosEspeciales a kcasosEspeciales, pasarAminuscSinAcentos a minuscSinAcentos
+        Tokenizador(const Tokenizador&);
+        
+        // DESTRUCTORES
 
-    string DelimitadoresPalabra() const;    // Devuelve "delimiters" 
-    bool CasosEspeciales();                 // Devuelve el contenido de la variable privada "casosEspeciales" 
-    bool PasarAminuscSinAcentos();          // Devuelve el contenido de la variable privada "pasarAminuscSinAcentos"
+        ~Tokenizador();	// Pone delimiters=""
+        
+        // FUNCIONES DE TOKENIZAR
+        
+        void Tokenizar(const string& str, list<string>& tokens) const;  // Tokeniza str devolviendo el resultado en tokens. La lista tokens se vaciará antes de almacenar el resultado de la tokenización. 
+        bool Tokenizar(const string& i, const string& f) const;         // Tokeniza el fichero i guardando la salida en el fichero f (una palabra en cada línea del fichero). Devolverá true si se realiza la tokenización de forma correcta; false en caso contrario enviando a cerr el mensaje correspondiente (p.ej. que no exista el archivo i)
+        bool Tokenizar(const string& i) const;                          // Tokeniza el fichero i guardando la salida en un fichero de nombre i añadiéndole extensión .tk (sin eliminar previamente la extensión de i por ejemplo, del archivo pp.txt se generaría el resultado en pp.txt.tk), y que contendrá una palabra en cada línea del fichero. Devolverá true si se realiza la tokenización de forma correcta; false en caso contrario enviando a cerr el mensaje correspondiente (p.ej. que no exista el archivo i)
+        bool TokenizarListaFicheros(const string& i) const;             // Tokeniza el fichero i que contiene un nombre de fichero por línea guardando la salida en ficheros (uno por cada línea de i) cuyo nombre será el leído en i añadiéndole extensión .tk, y que contendrá una palabra en cada línea del fichero leído en i. Devolverá true si se realiza la tokenización de forma correcta de todos los archivos que contiene i; devolverá false en caso contrario enviando a cerr el mensaje correspondiente (p.ej. que no exista el archivo i, o que se trate de un directorio, enviando a "cerr" los archivos de i que no existan o que sean directorios; luego no se ha de interrumpir la ejecución si hay algún archivo en i que no exista)
+        bool TokenizarDirectorio(const string& i) const;                // Tokeniza todos los archivos que contenga el directorio i, incluyendo los de los subdirectorios, guardando la salida en ficheros cuyo nombre será el de entrada añadiéndole extensión .tk, y que contendrá una palabra en cada línea del fichero. Devolverá true si se realiza la tokenización de forma correcta de todos los archivos; devolverá false en caso contrario enviando a cerr el mensaje correspondiente (p.ej. que no exista el directorio i, o los ficheros que no se hayan podido tokenizar)
+        
+        // GETTERS
 
-    // SETTERS
+        string DelimitadoresPalabra() const;
+        bool CasosEspeciales() const;
+        bool PasarAminuscSinAcentos() const;
 
-    void DelimitadoresPalabra(const string& nuevoDelimiters);               // Inicializa delimiters a nuevoDelimiters, filtrando que no se introduzcan delimitadores repetidos (de izquierda a derecha, en cuyo caso se eliminar?an los que hayan sido repetidos por la derecha)
-    void AnyadirDelimitadoresPalabra(const string& nuevoDelimiters);        // A?ade al final de "delimiters" los nuevos delimitadores que aparezcan en "nuevoDelimiters" (no se almacenar?n caracteres repetidos)
-    void CasosEspeciales(const bool& nuevoCasosEspeciales);                 // Cambia la variable privada "casosEspeciales"
-    void PasarAminuscSinAcentos(const bool& nuevoPasarAminuscSinAcentos);   // Cambia la variable privada "pasarAminuscSinAcentos". Atenci?n al formato de codificaci?n del corpus (comando "file" de Linux). Para la correcci?n de la pr?ctica se utilizar? el formato actual (ISO-8859).
+        // SETTERS
 
-    private:
+        void DelimitadoresPalabra(const string& nuevoDelimiters);
+        void AnyadirDelimitadoresPalabra(const string& nuevoDelimiters);
+        void CasosEspeciales(const bool& nuevoCasosEspeciales);
+        void PasarAminuscSinAcentos(const bool& nuevoPasarAminuscSinAcentos);
 
-        unordered_set<char> delimiters;		        // Delimitadores de t?rminos. Aunque se modifique la forma de almacenamiento interna para mejorar la eficiencia, este campo debe permanecer para indicar el orden en que se introdujeron los delimitadores
-        bool casosEspeciales;           // Si true detectar? palabras compuestas y casos especiales. Sino, trabajar? al igual que el algoritmo propuesto en la secci?n "Versi?n del tokenizador vista en clase"
-        bool pasarAminuscSinAcentos;    // Si true pasar? el token a min?sculas y quitar? acentos, antes de realizar la tokenizaci?n
+        
+        private:
+        
+        string delimiters;	            // Delimitadores de términos. Aunque se modifique la forma de almacenamiento interna para mejorar la eficiencia, este campo debe permanecer para indicar el orden en que se introdujeron los delimitadores
+        unordered_set<char> delimitersSet;	// Delimitadores para eficiencia en la búsqueda de delimitadores.
+        bool casosEspeciales;           // Si true detectará palabras compuestas y casos especiales. Sino, trabajará al igual que el algoritmo propuesto en la sección "Versión del tokenizador vista en clase"
+        bool pasarAminuscSinAcentos;    // Si true pasará el token a minúsculas y quitará acentos, antes de realizar la tokenización
+        
+        // FUNCIONES AUXILIARES
+        
+        string DelimitesToString() const;
+        string PasarAMinuscSinAcentos(const string& str) const;
+        void TokenizarFichero(const string& str, list<string>& tokens, const bool eof) const;   // Hace lo mismo que el básico pero es capaz de volver a una palabra cortada en la iteración anterior
+        
 };
 
 #endif
